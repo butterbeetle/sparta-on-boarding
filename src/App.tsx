@@ -1,3 +1,6 @@
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/router";
+
 /**
 - [O]  zustand, tanstack query, tailwind css(또는 styled-components), react-router-dom 세팅
 - [ ]  환경변수 세팅 및 폴더구조 구성하기
@@ -11,7 +14,7 @@
 function App() {
   return (
     <>
-      <p className="text-red-500">hi</p>
+      <RouterProvider router={router} />
     </>
   );
 }
