@@ -1,4 +1,5 @@
 import { RouterProvider } from "react-router-dom";
+import QueryProvider from "./query/QueryProvider";
 import router from "./routes/router";
 
 /**
@@ -14,7 +15,9 @@ import router from "./routes/router";
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <QueryProvider>
+        <RouterProvider router={router} />
+      </QueryProvider>
     </>
   );
 }
