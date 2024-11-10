@@ -3,3 +3,5 @@ export type SignUpData = {
   password: string;
   nickname: string;
 };
+
+export type logInData = Omit<SignUpData, "nickname">;

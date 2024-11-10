@@ -1,10 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
+import Button from "../../components/ui/button";
 import Input from "../../components/ui/Input";
 import { SignUpData } from "../../types/types";
 
 const SignUpPage = () => {
+  const [error, setError] = useState<string>("");
+  const nav = useNavigate();
   const inputRef = useRef<Array<HTMLInputElement | null>>([]);
 
   const { mutateAsync: signUp } = useMutation({
@@ -16,6 +20,7 @@ const SignUpPage = () => {
 
     for (const ele of inputRef.current) {
       if (!ele || !ele.value) {
+        setError("아이디 및 비밀번호, 닉네임을 입력해주세요.");
         return;
       }
     }
@@ -26,7 +31,18 @@ const SignUpPage = () => {
       nickname: inputRef.current[2]?.value || "",
     };
 
-    signUp(signUpData);
+    signUp(signUpData, {
+      onSuccess: (res) => {
+        if (res.success) {
+          console.log("성공");
+          setError("");
+          nav("/login", { replace: true });
+        } else {
+          console.log("실패");
+          setError(res.message);
+        }
+      },
+    });
   };
 
   return (
@@ -35,14 +51,9 @@ const SignUpPage = () => {
         <Input ref={(el) => (inputRef.current[0] = el)} type="id" />
         <Input ref={(el) => (inputRef.current[1] = el)} type="nickname" />
         <Input ref={(el) => (inputRef.current[2] = el)} type="password" />
-        <button
-          className="py-4 border border-solid border-green-200 rounded-md select-none
-          bg-green-300 font-bold hover:bg-green-400 active:bg-green-500
-          active:shadow-[inset_0px_1px_4px]"
-          type="submit"
-        >
-          회원가입
-        </button>
+        {error && <div className="text-red-400 text-center">{error}</div>}
+
+        <Button text="회원가입" type="button" />
       </form>
     </div>
   );
