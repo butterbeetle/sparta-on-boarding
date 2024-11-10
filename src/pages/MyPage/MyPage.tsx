@@ -22,7 +22,6 @@ const MyPage = () => {
 
   // console.log("LOCAL___", accessToken, userId, nickname, avatar);
   // console.log("USER PROFILE___", data);
-
   const { mutateAsync: profileUpdate } = useMutation({
     mutationFn: (profileData: profileDataType) =>
       api.auth.updateProfile(profileData),
