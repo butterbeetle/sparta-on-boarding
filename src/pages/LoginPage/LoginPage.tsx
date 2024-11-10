@@ -5,7 +5,7 @@ import api from "../../api/api";
 import Button from "../../components/ui/button";
 import Input from "../../components/ui/Input";
 import useLoginStore from "../../store/login.store";
-import { logInData } from "../../types/types";
+import { logInDataType } from "../../types/types";
 
 const LoginPage = () => {
   const [error, setError] = useState<string>("");
@@ -14,7 +14,7 @@ const LoginPage = () => {
   const LogIn = useLoginStore((state) => state.logIn);
 
   const { mutateAsync: logIn } = useMutation({
-    mutationFn: (logInData: logInData) => api.auth.logIn(logInData),
+    mutationFn: (logInData: logInDataType) => api.auth.logIn(logInData),
   });
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {

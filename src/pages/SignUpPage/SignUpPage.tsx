@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import Button from "../../components/ui/button";
 import Input from "../../components/ui/Input";
-import { SignUpData } from "../../types/types";
+import { SignUpDataType } from "../../types/types";
 
 const SignUpPage = () => {
   const [error, setError] = useState<string>("");
@@ -12,7 +12,7 @@ const SignUpPage = () => {
   const inputRef = useRef<Array<HTMLInputElement | null>>([]);
 
   const { mutateAsync: signUp } = useMutation({
-    mutationFn: (signUpData: SignUpData) => api.auth.signUp(signUpData),
+    mutationFn: (signUpData: SignUpDataType) => api.auth.signUp(signUpData),
   });
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
