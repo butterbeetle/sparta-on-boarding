@@ -1,9 +1,31 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useLoginStore from "../../store/login.store";
 const Header = () => {
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
   const nav = useNavigate();
   const logOut = useLoginStore((state) => state.logOut);
+
+  // const { data } = useQuery({
+  //   queryKey: ["user"],
+  //   queryFn: () => api.auth.getUserInfo(),
+  // });
+
+  // console.log("DATA___", data);
+
+  useEffect(() => {
+    const timeout = setTimeout(
+      () => {
+        logOut();
+        nav("/login", { replace: true });
+      },
+      1000 * 60 * 10
+    );
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isLoggedIn, logOut, nav]);
 
   const onLogInHandler = () => {
     if (isLoggedIn) {
