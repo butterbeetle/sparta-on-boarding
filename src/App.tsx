@@ -21,9 +21,18 @@ Sentry.init({
 function App() {
   return (
     <>
-      <QueryProvider>
-        <RouterProvider router={router} />
-      </QueryProvider>
+      <Sentry.ErrorBoundary fallback={<p>에러발생</p>}>
+        <button
+          onClick={() => {
+            throw new Error("Test");
+          }}
+        >
+          에러
+        </button>
+        <QueryProvider>
+          <RouterProvider router={router} />
+        </QueryProvider>
+      </Sentry.ErrorBoundary>
     </>
   );
 }
