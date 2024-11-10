@@ -2,17 +2,22 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/common/Layout";
 import ProtectedRoute from "../components/common/ProtectedRoute";
 import PublicRoute from "../components/common/PublicRoute";
+import ErrorBoundary from "../components/ui/ErrorBoundary";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import MyPage from "../pages/MyPage/MyPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
 
 const ProtectedRouteWrapper = ({ element }: { element: JSX.Element }) => (
-  <ProtectedRoute>{element}</ProtectedRoute>
+  <ProtectedRoute>
+    <ErrorBoundary>{element}</ErrorBoundary>
+  </ProtectedRoute>
 );
 
 const PublicRouteWrapper = ({ element }: { element: JSX.Element }) => (
-  <PublicRoute>{element}</PublicRoute>
+  <PublicRoute>
+    <ErrorBoundary>{element}</ErrorBoundary>
+  </PublicRoute>
 );
 
 const router = createBrowserRouter([

@@ -141,7 +141,7 @@ class AuthAPI {
     } catch (error) {
       return {
         success: false,
-        message: "사용자 정보를 가져오는 중 알 수 없는 오류가 발생했습니다.",
+        message: "사용자 정보 업데이트 중 알 수 없는 오류가 발생했습니다.",
       };
     }
   };

@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import api from "../../api/api";
@@ -62,7 +64,10 @@ const MyPage = () => {
           });
           setError("");
         } else {
+          console.error(error);
           setError(res.message);
+          Sentry.captureException(error);
+          throw new Error("사용자 정보 업데이트 중 알 수 없는 에러 발생");
         }
       },
     });

@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,16 +32,16 @@ const SignUpPage = () => {
       password: inputRef.current[1]?.value || "",
       nickname: inputRef.current[2]?.value || "",
     };
-
     signUp(signUpData, {
       onSuccess: (res) => {
         if (res.success) {
-          // console.log("성공");
           setError("");
           nav("/login", { replace: true });
         } else {
-          // console.log("실패");
+          console.error(error);
           setError(res.message);
+          Sentry.captureException(error);
+          throw new Error("회원가입 중 알 수 없는 에러 발생");
         }
       },
     });
@@ -53,7 +55,7 @@ const SignUpPage = () => {
         <Input ref={(el) => (inputRef.current[2] = el)} type="password" />
         {error && <div className="text-red-400 text-center">{error}</div>}
 
-        <Button text="회원가입" type="button" />
+        <Button text="회원가입" type="submit" />
       </form>
     </div>
   );

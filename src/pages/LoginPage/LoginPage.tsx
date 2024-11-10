@@ -1,4 +1,6 @@
+import * as Sentry from "@sentry/react";
 import { useMutation } from "@tanstack/react-query";
+
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
@@ -40,8 +42,10 @@ const LoginPage = () => {
           LogIn({ ...res });
           nav("/", { replace: true });
         } else {
-          // console.log("실패");
+          console.error(error);
           setError(res.message);
+          Sentry.captureException(error);
+          throw new Error("로그인 중 알 수 없는 에러 발생");
         }
       },
     });
