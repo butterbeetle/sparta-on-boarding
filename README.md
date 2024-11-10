@@ -2,7 +2,7 @@
 
 ### 한달 인턴 과제
 
-#### [바로가기](https://sparta-on-boarding-j5f0bcifc-butterbeetles-projects.vercel.app/)
+#### [바로가기](https://sparta-on-boarding.vercel.app/)
 
 ---
 
