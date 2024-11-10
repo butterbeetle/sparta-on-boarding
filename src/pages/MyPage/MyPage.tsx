@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import api from "../../api/api";
 import Button from "../../components/ui/button";
@@ -15,10 +15,10 @@ const MyPage = () => {
     avatar || "src/assets/defaultProfile.png"
   );
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
-  const { data } = useQuery({
-    queryKey: ["user"],
-    queryFn: () => api.auth.getUserInfo(),
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["user"],
+  //   queryFn: () => api.auth.getUserInfo(),
+  // });
 
   // console.log("LOCAL___", accessToken, userId, nickname, avatar);
   // console.log("USER PROFILE___", data);
