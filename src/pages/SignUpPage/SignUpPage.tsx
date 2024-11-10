@@ -34,11 +34,11 @@ const SignUpPage = () => {
     signUp(signUpData, {
       onSuccess: (res) => {
         if (res.success) {
-          console.log("성공");
+          // console.log("성공");
           setError("");
           nav("/login", { replace: true });
         } else {
-          console.log("실패");
+          // console.log("실패");
           setError(res.message);
         }
       },

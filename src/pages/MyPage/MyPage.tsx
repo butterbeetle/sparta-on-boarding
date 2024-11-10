@@ -52,7 +52,7 @@ const MyPage = () => {
     // console.log("DATA___", profileData);
     profileUpdate(profileData, {
       onSuccess: (res) => {
-        console.log("SUCCESS RES___", res);
+        // console.log("SUCCESS RES___", res);
         if (res.success) {
           useLoginStore.getState().logIn({
             accessToken: accessToken!,

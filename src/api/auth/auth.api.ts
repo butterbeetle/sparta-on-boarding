@@ -136,7 +136,7 @@ class AuthAPI {
         .catch(() => {
           return { success: false, message: "네트워크 요청에 실패했습니다." };
         });
-      console.log("RES___", res);
+      // console.log("RES___", res);
       return res;
     } catch (error) {
       return {

@@ -34,13 +34,13 @@ const LoginPage = () => {
 
     logIn(logInData, {
       onSuccess: (res) => {
-        console.log(res);
+        // console.log(res);
         if (res.success) {
-          console.log("성공");
+          // console.log("성공");
           LogIn({ ...res });
           nav("/", { replace: true });
         } else {
-          console.log("실패");
+          // console.log("실패");
           setError(res.message);
         }
       },
