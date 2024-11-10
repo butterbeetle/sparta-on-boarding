@@ -9,7 +9,6 @@ class AuthAPI {
 
   // 회원가입
   signUp = async ({ id, password, nickname }: SignUpData) => {
-    // console.log("SignUP Data", id, password, nickname);
     try {
       const res = await fetch(`${this.baseURL}/register`, {
         method: "POST",
@@ -38,7 +37,6 @@ class AuthAPI {
 
   // 로그인
   logIn = async ({ id, password }: logInData) => {
-    console.log(id, password);
     try {
       const res = await fetch(`${this.baseURL}/login?expiresIn=10m`, {
         method: "POST",
@@ -55,7 +53,7 @@ class AuthAPI {
           return { success: false, message: "네트워크 요청에 실패했습니다." };
         });
 
-      return { ...res };
+      return res;
     } catch (error) {
       return {
         success: false,
