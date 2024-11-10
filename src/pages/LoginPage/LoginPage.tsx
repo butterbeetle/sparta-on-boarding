@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import Button from "../../components/ui/button";
 import Input from "../../components/ui/Input";
+import useLoginStore from "../../store/login.store";
 import { logInData } from "../../types/types";
 
 const LoginPage = () => {
   const [error, setError] = useState<string>("");
   const nav = useNavigate();
   const inputRef = useRef<Array<HTMLInputElement | null>>([]);
+  const LogIn = useLoginStore((state) => state.logIn);
 
   const { mutateAsync: logIn } = useMutation({
     mutationFn: (logInData: logInData) => api.auth.logIn(logInData),
@@ -35,6 +37,7 @@ const LoginPage = () => {
         console.log(res);
         if (res.success) {
           console.log("성공");
+          LogIn({ ...res });
           nav("/", { replace: true });
         } else {
           console.log("실패");
