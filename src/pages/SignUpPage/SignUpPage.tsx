@@ -32,6 +32,9 @@ const SignUpPage = () => {
       password: inputRef.current[1]?.value || "",
       nickname: inputRef.current[2]?.value || "",
     };
+
+    console.log("signUpData", signUpData);
+
     signUp(signUpData, {
       onSuccess: (res) => {
         if (res.success) {
@@ -51,8 +54,8 @@ const SignUpPage = () => {
     <div>
       <form onSubmit={onSubmitHandler} className="flex flex-col gap-3 w-full">
         <Input ref={(el) => (inputRef.current[0] = el)} type="id" />
-        <Input ref={(el) => (inputRef.current[1] = el)} type="nickname" />
-        <Input ref={(el) => (inputRef.current[2] = el)} type="password" />
+        <Input ref={(el) => (inputRef.current[1] = el)} type="password" />
+        <Input ref={(el) => (inputRef.current[2] = el)} type="nickname" />
         {error && <div className="text-red-400 text-center">{error}</div>}
 
         <Button text="회원가입" type="submit" />

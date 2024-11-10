@@ -34,6 +34,8 @@ const LoginPage = () => {
       password: inputRef.current[1]?.value || "",
     };
 
+    console.log("logInData", logInData);
+
     logIn(logInData, {
       onSuccess: (res) => {
         // console.log(res);
