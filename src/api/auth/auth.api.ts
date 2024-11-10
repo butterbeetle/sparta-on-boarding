@@ -8,7 +8,7 @@ import {
 class AuthAPI {
   private baseURL: string;
 
-  constructor(baseURL: string = "https://moneyfulpublicpolicy.co.kr") {
+  constructor(baseURL: string = import.meta.env.VITE_SERVER_URL) {
     this.baseURL = baseURL;
   }
 
